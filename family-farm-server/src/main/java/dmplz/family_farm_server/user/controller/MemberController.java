@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dmplz.family_farm_server.user.DTO.SignUp;
-import dmplz.family_farm_server.user.model.Member;
-import dmplz.family_farm_server.user.service.MemberService;
+import dmplz.family_farm_server.member.dto.SignUp;
+import dmplz.family_farm_server.member.model.Member;
+import dmplz.family_farm_server.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
