@@ -1,5 +1,6 @@
 package dmplz.family_farm_server.question.model;
 
+import dmplz.family_farm_server.question.dto.CreateQuestion;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,8 +24,22 @@ public class Question {
 	@Column
 	private Enum questionType;
 
+	public Question(CreateQuestion question) {
+		this.questionContent = question.getQuestionContent();
+		this.questionType = question.getQuestionType();
+	}
+
 	public Question(String questionContent, Enum questionType) {
 		this.questionContent = questionContent;
 		this.questionType = questionType;
+	}
+
+	@Override
+	public String toString() {
+		return "Question{" +
+			"Id=" + Id +
+			", questionContent='" + questionContent + '\'' +
+			", questionType=" + questionType +
+			'}';
 	}
 }
