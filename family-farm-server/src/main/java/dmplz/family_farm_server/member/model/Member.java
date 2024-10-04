@@ -1,9 +1,9 @@
-package dmplz.family_farm_server.user.model;
+package dmplz.family_farm_server.member.model;
 
 import dmplz.family_farm_server.family.model.Family;
+import dmplz.family_farm_server.member.dto.UpdateMemberDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -44,5 +44,10 @@ public class Member {
 			", nickname='" + nickname + '\'' +
 			", family=" + family +
 			'}';
+	}
+
+	public Member update(UpdateMemberDTO updateMemberDTO) {
+		this.nickname = updateMemberDTO.getNickname();
+		return this;
 	}
 }
