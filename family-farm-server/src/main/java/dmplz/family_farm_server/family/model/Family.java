@@ -3,7 +3,7 @@ package dmplz.family_farm_server.family.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import dmplz.family_farm_server.user.model.Member;
+import dmplz.family_farm_server.member.model.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,7 +24,7 @@ public class Family {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long familyId;
 
-	@OneToMany(mappedBy = "family", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "family", fetch = FetchType.LAZY)
 	@Column(name = "member_id")
 	private List<Member> members;
 
@@ -38,5 +38,13 @@ public class Family {
 
 	public void addMember(Member member) {
 		members.add(member);
+	}
+
+	@Override
+	public String toString() {
+		return "Family{" +
+			"familyId=" + familyId +
+			", inviteCode='" + inviteCode + '\'' +
+			'}';
 	}
 }
