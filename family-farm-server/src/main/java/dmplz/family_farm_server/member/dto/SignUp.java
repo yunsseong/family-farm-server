@@ -1,4 +1,4 @@
-package dmplz.family_farm_server.user.DTO;
+package dmplz.family_farm_server.member.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
