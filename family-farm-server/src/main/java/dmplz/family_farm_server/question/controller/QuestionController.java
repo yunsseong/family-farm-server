@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dmplz.family_farm_server.question.dto.CreateQuestion;
+import dmplz.family_farm_server.question.dto.FamilyQuestionDTO;
 import dmplz.family_farm_server.question.model.FamilyQuestion;
 import dmplz.family_farm_server.question.model.Question;
 import dmplz.family_farm_server.question.service.QuestionAllocationService;
@@ -26,9 +27,8 @@ public class QuestionController {
 	private final QuestionService questionService;
 
 	@GetMapping("/today/{familyId}")
-	public ResponseEntity<Question> getTodayQuestion(@PathVariable Long familyId) {
-		FamilyQuestion familyQuestion = questionAllocationService.allocateQuestion(familyId);
-		return ResponseEntity.ok(familyQuestion.getQuestion());
+	public ResponseEntity<FamilyQuestionDTO> getTodayQuestion(@PathVariable Long familyId) {
+		return ResponseEntity.ok(new FamilyQuestionDTO(questionAllocationService.allocateQuestion(familyId)));
 	}
 
 	@GetMapping
@@ -37,7 +37,7 @@ public class QuestionController {
 	}
 
 	@GetMapping("/{familyId}")
-	public ResponseEntity<List<Question>> getAllocatedQuestion(@PathVariable Long familyId) {
+	public ResponseEntity<List<FamilyQuestionDTO>> getAllocatedQuestion(@PathVariable Long familyId) {
 		return ResponseEntity.ok(questionAllocationService.getAllocatedQuestions(familyId));
 	}
 
