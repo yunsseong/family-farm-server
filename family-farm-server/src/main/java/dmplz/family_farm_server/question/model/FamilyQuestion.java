@@ -3,6 +3,7 @@ package dmplz.family_farm_server.question.model;
 import java.time.LocalDateTime;
 import dmplz.family_farm_server.family.model.Family;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,7 +23,7 @@ public class FamilyQuestion {
 	@ManyToOne
 	private Family family;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Question question;
 
 	private LocalDateTime allocatedDate;
@@ -33,6 +34,7 @@ public class FamilyQuestion {
 		this.family = family;
 		this.question = uniqueQuestion;
 		this.allocatedDate = LocalDateTime.now();
+		this.isComplete = false;
 	}
 
 	@Override
