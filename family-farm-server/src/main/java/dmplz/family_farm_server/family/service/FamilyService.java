@@ -38,9 +38,7 @@ public class FamilyService {
 
 	@Transactional
 	public Family createNewFamily() {
-		Family family = new Family(inviteCodeService.generateInviteCode());
-		familyRepository.save(family);
-		return family;
+		return familyRepository.save(new Family(inviteCodeService.generateInviteCode()));
 	}
 
 	@Transactional

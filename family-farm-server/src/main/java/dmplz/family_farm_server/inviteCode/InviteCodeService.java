@@ -1,5 +1,6 @@
 package dmplz.family_farm_server.inviteCode;
 
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class InviteCodeService {
 		String inviteCode = "";
 		do {
 			inviteCode = generateCode(6);
-		} while (isUniqueInviteCode(inviteCode));
+		} while (!isUniqueInviteCode(inviteCode));
 		return inviteCode;
 	}
 
@@ -34,7 +35,8 @@ public class InviteCodeService {
 
 	public boolean isUniqueInviteCode(String inviteCode) {
 		try {
-			familyRepository.findByInviteCode(inviteCode);
+			familyRepository.findByInviteCode(inviteCode)
+				.orElseThrow(NoSuchElementException::new);
 		} catch (Exception e) {
 			return true;
 		}
