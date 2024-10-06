@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dmplz.family_farm_server.member.dto.MemberDTO;
 import dmplz.family_farm_server.member.dto.UpdateMemberDTO;
 import dmplz.family_farm_server.member.model.Member;
 import dmplz.family_farm_server.member.service.MemberService;
@@ -20,8 +21,8 @@ public class MemberController {
 	private final MemberService memberService;
 
 	@GetMapping("/{memberId}")
-	public ResponseEntity<Member> getMember(@PathVariable Long memberId) {
-		return ResponseEntity.ok(memberService.getMember(memberId));
+	public ResponseEntity<MemberDTO> getMember(@PathVariable Long memberId) {
+		return ResponseEntity.ok(new MemberDTO(memberService.getMember(memberId)));
 	}
 
 	@GetMapping("/update/{memberId}")
