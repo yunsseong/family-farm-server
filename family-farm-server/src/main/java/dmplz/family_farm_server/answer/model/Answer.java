@@ -8,8 +8,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
+@NoArgsConstructor
 public class Answer {
 
 	@Id
@@ -18,12 +22,30 @@ public class Answer {
 	private Long id;
 
 	@ManyToOne
-	private Member member;
+	private FamilyQuestion familyQuestion;
 
 	@ManyToOne
-	private FamilyQuestion question;
+	private Member member;
 
 	private AnswerType answerType;
 
 	private String answer;
+
+	public Answer(FamilyQuestion familyQuestion, Member member, AnswerType answerType, String answer) {
+		this.familyQuestion = familyQuestion;
+		this.member = member;
+		this.answerType = answerType;
+		this.answer = answer;
+	}
+
+	@Override
+	public String toString() {
+		return "Answer{" +
+			"id=" + id +
+			", familyQuestion=" + familyQuestion +
+			", member=" + member +
+			", answerType=" + answerType +
+			", answer='" + answer + '\'' +
+			'}';
+	}
 }
